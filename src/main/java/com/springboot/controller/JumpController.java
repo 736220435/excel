@@ -1,9 +1,9 @@
 package com.springboot.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class JumpController {
     @RequestMapping({"/", "/index"})
     public String index() {

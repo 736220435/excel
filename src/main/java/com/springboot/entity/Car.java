@@ -8,5 +8,5 @@ public class Car {
     private String name;
     private Integer price;
     private String colour;
-    private String band;
+    private String brand;
 }
