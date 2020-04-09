@@ -7,14 +7,12 @@
 </head>
 <body>
 <h1>首页</h1>
-<form method="get">
-    <select name="database">
-        <option value="car" selected>car</option>
-        <option value="computer">computer</option>
-        <option value="student">student</option>
-    </select>
-    <input type="submit" value="确定">
-</form>
+<select name="database">
+    <option value="car" selected>car</option>
+    <option value="computer">computer</option>
+    <option value="student">student</option>
+</select>
+<input type="button" onclick="searchAll()" value="确定">
 <table>
     <thead>
     <tr>
@@ -44,9 +42,10 @@
     </tbody>
 </table>
 <script>
-    $(function () {
-        $.ajax({})
-    })
+    function searchAll() {
+
+    }
 </script>
-</body>
-</html>
+<
+/body>
+< /html>
