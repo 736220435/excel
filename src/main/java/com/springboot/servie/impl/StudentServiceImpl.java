@@ -1,6 +1,7 @@
 package com.springboot.servie.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.springboot.dao.StudentDao;
 import com.springboot.entity.Student;
 import com.springboot.servie.StudentService;
@@ -15,9 +16,9 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     @Override
-    public List<Student> studentList(Integer pageNum, Integer pageSize) {
+    public PageInfo<List<Student>> studentList(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return studentDao.studentList();
+        return new PageInfo(studentDao.studentList());
     }
 
     @Override

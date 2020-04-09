@@ -1,6 +1,7 @@
 package com.springboot.servie.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.springboot.dao.ComputerDao;
 import com.springboot.entity.Computer;
 import com.springboot.servie.ComputerService;
@@ -15,9 +16,9 @@ public class ComputerServiceImpl implements ComputerService {
     private ComputerDao computerDao;
 
     @Override
-    public List<Computer> computerList(Integer pageNum, Integer pageSize) {
+    public PageInfo<List<Computer>> computerList(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return computerDao.computerList();
+        return new PageInfo(computerDao.computerList());
     }
 
     @Override

@@ -15,10 +15,10 @@ public class ResultVOUtils {
         return success(null);
     }
 
-    public static ResultVO<Object> error() {
+    public static ResultVO<Object> error(String msg) {
         ResultVO<Object> objectResultVO = new ResultVO<>();
         objectResultVO.setCode(1);
-        objectResultVO.setMsg("失败");
+        objectResultVO.setMsg(msg);
         return objectResultVO;
     }
 }
