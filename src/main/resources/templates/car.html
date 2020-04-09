@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>汽车</title>
+    <script th:src="@{/js/jquery-1.4.2.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<h1>汽车</h1>
+<label th:text="${msg}"></label>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>主键(id)</td>
+        <td>名称(name)</td>
+        <td>价格(price)</td>
+        <td>颜色(colour)</td>
+        <td>品牌(brand)</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car:${listPageInfo.list}">
+        <td th:text="${car.id}"></td>
+        <td th:text="${car.name}"></td>
+        <td th:text="${car.price}"></td>
+        <td th:text="${car.colour}"></td>
+        <td th:text="${car.brand}"></td>
+    </tr>
+    </tbody>
+</table>
+<input type="button" value="导入" onclick="importExcel()"/>
+<input type="button" value="导出" onclick="exportExcel()"/>
+<script>
+    function importExcel() {
+
+    }
+
+    function exportExcel() {
+
+    }
+</script>
+</body>
+</html>
