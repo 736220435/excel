@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    <script src="/js/jquery-1.4.2.js"></script>
 </head>
 <body>
-首页
+<h1>首页</h1>
+<form method="get">
+    <select name="database">
+        <option value="car" selected>car</option>
+        <option value="computer">computer</option>
+        <option value="student">student</option>
+    </select>
+    <input type="submit" value="确定">
+</form>
+<table>
+    <thead>
+    <tr>
+        <td>
+            id
+        </td>
+        <td>
+            name
+        </td>
+        <td>
+            price
+        </td>
+        <td>
+            colour
+        </td>
+        <td>
+            brand
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.ajax({})
+    })
+</script>
 </body>
 </html>
