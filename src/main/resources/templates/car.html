@@ -30,7 +30,10 @@
     </tr>
     </tbody>
 </table>
-<input class="btn btn-success" type="button" value="导入" onclick="importExcel()"/>
+<form action="/springboot/insertCarByExcel" enctype="multipart/form-data" method="post">
+    <input type="file" name="file">
+    <input class="btn btn-success" type="submit" value="导入"/>
+</form>
 <input class="btn btn-info" type="button" value="导出" onclick="exportExcel()"/>
 <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -51,14 +54,5 @@
         </li>
     </ul>
 </nav>
-<script>
-    function importExcel() {
-
-    }
-
-    function exportExcel() {
-
-    }
-</script>
 </body>
 </html>

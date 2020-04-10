@@ -5,9 +5,15 @@ import com.github.pagehelper.PageInfo;
 import com.springboot.dao.CarDao;
 import com.springboot.entity.Car;
 import com.springboot.servie.CarService;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +28,41 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Integer insertCar(List<Car> cars) {
-        return null;
+    public Integer insertCarByExcel(MultipartFile multipartFile) {
+        List<Car> carList = new ArrayList<>();
+        try {
+            // 创建都Excel工作簿文件的引用
+            XSSFWorkbook sheets = new XSSFWorkbook(multipartFile.getInputStream());
+            // 获取Excel工作表总数
+            int numberOfSheets = sheets.getNumberOfSheets();
+            for (int i = 0; i < numberOfSheets; i++) {
+                XSSFSheet sheet = sheets.getSheetAt(i);
+                for (int j = 1; j < sheet.getLastRowNum() + 1; j++) {
+                    Car car = new Car();
+                    for (int k = 1; k < sheet.getRow(j).getPhysicalNumberOfCells(); k++) {
+                        DataFormatter dataFormatter = new DataFormatter();
+                        String stringCellValue = dataFormatter.formatCellValue(sheet.getRow(j).getCell(k));
+                        switch (k) {
+                            case 1:
+                                car.setName(stringCellValue);
+                                break;
+                            case 2:
+                                car.setPrice(Integer.parseInt(stringCellValue));
+                                break;
+                            case 3:
+                                car.setColour(stringCellValue);
+                                break;
+                            case 4:
+                                car.setBrand(stringCellValue);
+                                break;
+                        }
+                    }
+                    carList.add(car);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return carDao.insertCar(carList);
     }
 }

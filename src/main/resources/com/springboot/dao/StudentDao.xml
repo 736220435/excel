@@ -7,8 +7,8 @@
     </select>
     <insert id="insertStudent">
         insert into student values
-        <foreach collection="list" separator="," open="(" close=")" item="item">
-            #{item.id},#{item.name},#{item.age},#{item.gender},#{item.grade}
+        <foreach collection="list" separator="," item="item">
+            (0,#{item.name},#{item.age},#{item.gender},#{item.grade})
         </foreach>
     </insert>
 </mapper>

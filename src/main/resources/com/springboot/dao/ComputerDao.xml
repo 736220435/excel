@@ -7,8 +7,8 @@
     </select>
     <insert id="insertComputer">
         insert into computer values
-        <foreach collection="list" item="item" open="(" close=")" separator=",">
-            #{item.id},#{item.name},#{item.price},#{item.cpu},#{item.disk},#{item.ram},#{item.system}
+        <foreach collection="list" item="item" separator=",">
+            (0,#{item.name},#{item.price},#{item.cpu},#{item.disk},#{item.ram},#{item.system})
         </foreach>
     </insert>
 </mapper>

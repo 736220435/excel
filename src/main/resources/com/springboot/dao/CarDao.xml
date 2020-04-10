@@ -7,8 +7,8 @@
     </select>
     <insert id="insertCar">
         insert into car values
-        <foreach collection="list" separator="," open="(" close=")" item="item">
-            #{item.id},#{item.name},#{item.price},#{item.colour}.#{item.brand}
+        <foreach collection="list" separator="," item="item">
+            (0,#{item.name},#{item.price},#{item.colour},#{item.brand})
         </foreach>
     </insert>
 </mapper>
