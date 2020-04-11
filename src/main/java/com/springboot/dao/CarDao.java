@@ -14,7 +14,7 @@ public interface CarDao {
      *
      * @return
      */
-    public List<Car> carList();
+    List<Car> carList();
 
     /**
      * 批量添加车信息
@@ -22,5 +22,5 @@ public interface CarDao {
      * @param cars
      * @return
      */
-    public Integer insertCar(List<Car> cars);
+    Integer insertCar(List<Car> cars);
 }

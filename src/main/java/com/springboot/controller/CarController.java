@@ -20,9 +20,9 @@ public class CarController {
     private CarService carService;
 
     @RequestMapping("/carList")
-    public ModelAndView carList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
+    public ModelAndView carList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", required = false, defaultValue = "2") Integer pageSize) {
         ModelAndView modelAndView = new ModelAndView("car");
-        PageInfo<List<Car>> listPageInfo = carService.carList(pageNum, pageSize);
+        PageInfo<Car> listPageInfo = carService.carList(pageNum, pageSize);
         if (listPageInfo.getList().size() > 0) {
             modelAndView.addObject("listPageInfo", listPageInfo);
             return modelAndView;

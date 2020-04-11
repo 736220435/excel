@@ -22,9 +22,10 @@ public class CarServiceImpl implements CarService {
     private CarDao carDao;
 
     @Override
-    public PageInfo<List<Car>> carList(Integer pageNum, Integer pageSize) {
+    public PageInfo<Car> carList(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return new PageInfo(carDao.carList());
+        List<Car> cars = carDao.carList();
+        return new PageInfo<>(cars);
     }
 
     @Override
