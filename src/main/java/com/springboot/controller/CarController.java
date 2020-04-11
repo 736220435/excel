@@ -3,15 +3,18 @@ package com.springboot.controller;
 import com.github.pagehelper.PageInfo;
 import com.springboot.entity.Car;
 import com.springboot.servie.CarService;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 @Controller
@@ -41,5 +44,35 @@ public class CarController {
         }
         modelAndView.addObject("msg", "通过Excel插入失败！");
         return modelAndView;
+    }
+
+    @RequestMapping("/exportCarByExcel")
+    public ModelAndView exportCarByExcel(HttpServletResponse response) {
+        ModelAndView modelAndView = new ModelAndView("success");
+        HSSFWorkbook workbook = carService.exportExcel();
+        // 获取输出流
+        OutputStream os = null;
+        try {
+            // 获取输出流
+            os = response.getOutputStream();
+            // 重置输出流
+            response.reset();
+            // 设定输出文件头
+            response.setHeader("Content-disposition",
+                    "attachment; filename=" + new String("car".getBytes("GB2312"), "8859_1") + ".xls");
+            // 定义输出类型
+            response.setContentType("application/msexcel");
+            workbook.write(os);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert os != null;
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

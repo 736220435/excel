@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.springboot.dao.CarDao;
 import com.springboot.entity.Car;
 import com.springboot.servie.CarService;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -65,5 +67,33 @@ public class CarServiceImpl implements CarService {
             e.printStackTrace();
         }
         return carDao.insertCar(carList);
+    }
+
+    @Override
+    public HSSFWorkbook exportExcel() {
+        // 创建Execl工作薄
+        HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+        // 在Excel工作簿中建一工作表
+        HSSFSheet sheet = hssfWorkbook.createSheet("car");
+        HSSFRow row = sheet.createRow(0);
+        row.createCell(0).setCellValue(new HSSFRichTextString("主键(id)"));
+        row.createCell(1).setCellValue(new HSSFRichTextString("名称(name)"));
+        row.createCell(2).setCellValue(new HSSFRichTextString("价格(price)"));
+        row.createCell(3).setCellValue(new HSSFRichTextString("颜色(colour)"));
+        row.createCell(4).setCellValue(new HSSFRichTextString("品牌(brand)"));
+        List<Car> cars = carDao.carList();
+        Iterator<Car> iterator = cars.iterator();
+        int num = 1;
+        while (iterator.hasNext()) {
+            Car car = iterator.next();
+            HSSFRow rowNum = sheet.createRow(num);
+            rowNum.createCell(0).setCellValue(new HSSFRichTextString(car.getId().toString()));
+            rowNum.createCell(1).setCellValue(new HSSFRichTextString(car.getName()));
+            rowNum.createCell(2).setCellValue(new HSSFRichTextString(car.getPrice().toString()));
+            rowNum.createCell(3).setCellValue(new HSSFRichTextString(car.getColour()));
+            rowNum.createCell(4).setCellValue(new HSSFRichTextString(car.getBrand()));
+            num++;
+        }
+        return hssfWorkbook;
     }
 }
