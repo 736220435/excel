@@ -3,7 +3,6 @@ package com.springboot.controller;
 import com.github.pagehelper.PageInfo;
 import com.springboot.entity.Car;
 import com.springboot.servie.CarService;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 
 @Controller
 public class CarController {
@@ -23,7 +21,7 @@ public class CarController {
     private CarService carService;
 
     @RequestMapping("/carList")
-    public ModelAndView carList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", required = false, defaultValue = "2") Integer pageSize) {
+    public ModelAndView carList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
         ModelAndView modelAndView = new ModelAndView("car");
         PageInfo<Car> listPageInfo = carService.carList(pageNum, pageSize);
         if (listPageInfo.getList().size() > 0) {
