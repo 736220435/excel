@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.dao.ForwardResultDao">
+    <insert id="insertForwardResult" parameterType="forwardResult">
+        insert into m_task_mblog_forward_result(id,mblog_forward_id, website_account_id, corpus_id, posttime,
+                                                result, resultmsg, picfile, counting, endtime, website_account, corpus)
+        values (0,#{mblog_forward_id}, 0, 0, #{posttime},
+                1, '成功', '', 1, #{endtime}, #{website_account}, '转发微博');
+    </insert>
+</mapper>

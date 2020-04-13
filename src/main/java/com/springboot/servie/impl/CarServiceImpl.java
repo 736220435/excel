@@ -60,6 +60,7 @@ public class CarServiceImpl implements CarService {
                                 break;
                         }
                     }
+
                     carList.add(car);
                 }
             }

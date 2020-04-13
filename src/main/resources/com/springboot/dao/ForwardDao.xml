@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.dao.ForwardDao">
+    <insert id="insertForward" parameterType="forward" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into m_task_mblog_forward(id,task_id, executorid, executetime, task_type_id,
+                                 name, url, title, website_id, count, corpus_ids, website_account_ids,
+                                 mode, status, screenshot, upa, is_comment)
+    values (0,1, 14, #{executetime}, 32, #{name}, #{url},
+        #{title},
+        7, 2, ',23,45,23,', ',34,54,65,392,', 1, 4, 1, 1, 0);
+    </insert>
+</mapper>
