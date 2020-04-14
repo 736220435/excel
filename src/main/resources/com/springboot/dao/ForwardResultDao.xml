@@ -4,8 +4,8 @@
 <mapper namespace="com.springboot.dao.ForwardResultDao">
     <insert id="insertForwardResult" parameterType="forwardResult">
         insert into m_task_mblog_forward_result(id,mblog_forward_id, website_account_id, corpus_id, posttime,
-                                                result, resultmsg, picfile, counting, endtime, website_account, corpus)
+                                                result, resultmsg, picfile, counting, endtime, corpus, website_account)
         values (0,#{mblog_forward_id}, 0, 0, #{posttime},
-                1, '成功', '', 1, #{endtime}, #{website_account}, '转发微博');
+                1, '成功', '', 1, #{endtime}, '转发微博', #{website_account});
     </insert>
 </mapper>

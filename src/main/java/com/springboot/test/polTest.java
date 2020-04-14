@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class polTest {
-    public static String path = "E:\\car.xlsx";
+    public static String path = "C:\\Users\\Jonsson\\Desktop\\100.xlsx";
 
     public static void main(String[] args) {
         try {
@@ -21,8 +21,8 @@ public class polTest {
             int numberOfSheets = sheets.getNumberOfSheets();
             for (int i = 0; i < numberOfSheets; i++) {
                 XSSFSheet sheet = sheets.getSheetAt(i);
-                for (int j = 0; j < sheet.getLastRowNum() + 1; j++) {
-                    for (int k = 0; k < sheet.getRow(j).getPhysicalNumberOfCells(); k++) {
+                for (int j = 1; j < sheet.getLastRowNum() + 1; j++) {
+                    for (int k = 1; k < sheet.getRow(j).getPhysicalNumberOfCells() + 1; k++) {
                         DataFormatter dataFormatter = new DataFormatter();
                         String stringCellValue = dataFormatter.formatCellValue(sheet.getRow(j).getCell(k));
                         System.out.println("第" + (j + 1) + "行第" + (k + 1) + "列的单元格是" + stringCellValue);

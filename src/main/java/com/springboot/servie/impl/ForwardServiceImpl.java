@@ -5,6 +5,7 @@ import com.springboot.dao.ForwardResultDao;
 import com.springboot.entity.Forward;
 import com.springboot.entity.ForwardResult;
 import com.springboot.servie.ForwardService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Service
+@Slf4j
 public class ForwardServiceImpl implements ForwardService {
+
     @Autowired
     private ForwardDao forwardDao;
 
@@ -36,7 +39,7 @@ public class ForwardServiceImpl implements ForwardService {
                 for (int j = 1; j < sheet.getLastRowNum() + 1; j++) {
                     Forward forward = new Forward();
                     ForwardResult forwardResult = new ForwardResult();
-                    for (int k = 1; k < sheet.getRow(j).getPhysicalNumberOfCells(); k++) {
+                    for (int k = 1; k < sheet.getRow(j).getPhysicalNumberOfCells() + 1; k++) {
                         DataFormatter dataFormatter = new DataFormatter();
                         String stringCellValue = dataFormatter.formatCellValue(sheet.getRow(j).getCell(k));
                         switch (k) {
