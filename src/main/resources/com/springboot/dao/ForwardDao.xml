@@ -8,6 +8,6 @@
                                  mode, status, screenshot, upa, is_comment)
     values (0,1, 14, #{executetime}, 32, #{name}, #{url},
         #{title},
-        7, 2, ',23,45,23,', ',34,54,65,392,', 1, 4, 1, 1, 0);
+        7, 1, ',23,45,23,', ',34,54,65,392,', 1, 4, 1, 1, 0);
     </insert>
 </mapper>
